@@ -32,8 +32,9 @@ public class ArrayStorage {
     public void update(Resume resume) {
         if (indexStorage(resume.getUuid()) >= 0) {
             storage[indexStorage(resume.getUuid())] = resume;
+        } else {
+            System.out.println("Такое резюме отсутвует");
         }
-        System.out.println("Такое резюме отсутвует");
     }
 
     public Resume get(String uuid) {
