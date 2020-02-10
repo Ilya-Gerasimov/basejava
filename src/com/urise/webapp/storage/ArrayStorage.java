@@ -18,7 +18,7 @@ public class ArrayStorage {
 
     public void save(Resume resume) {
         if (size < 10000) {
-            if (indexStorage(resume.getUuid()) == -1) {
+            if (getIndex(resume.getUuid()) == -1) {
                 storage[size] = resume;
                 size++;
             } else {
@@ -30,34 +30,25 @@ public class ArrayStorage {
     }
 
     public void update(Resume resume) {
-        if (indexStorage(resume.getUuid()) >= 0) {
-            storage[indexStorage(resume.getUuid())] = resume;
+        if (getIndex(resume.getUuid()) >= 0) {
+            storage[getIndex(resume.getUuid())] = resume;
         } else {
             System.out.println("Такое резюме отсутвует");
         }
     }
 
     public Resume get(String uuid) {
-        if (indexStorage(uuid) >= 0) {
-            for (int i = 0; i < size; i++) {
-                if (storage[i].getUuid() == uuid) {
-                    return storage[i];
-                }
-            }
+        if (getIndex(uuid) >= 0) {
+            return storage[getIndex(uuid)];
         }
         return null;
     }
 
     public void delete(String uuid) {
-        if (indexStorage(uuid) >= 0) {
-            for (int i = 0; i < size; i++) {
-                if (storage[i].getUuid() == uuid) {
-                    size--;
-                    storage[i] = storage[size];
-                    storage[size] = null;
-                    break;
-                }
-            }
+        if (getIndex(uuid) >= 0) {
+            size--;
+            storage[getIndex(uuid)] = storage[size];
+            storage[size] = null;
         } else {
             System.out.println("Такое резюме отсутвует");
         }
@@ -74,7 +65,7 @@ public class ArrayStorage {
         return size;
     }
 
-    int indexStorage(String uuid) {
+    private int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid() == uuid) {
                 return i;
