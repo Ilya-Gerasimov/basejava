@@ -17,31 +17,48 @@ public class ArrayStorage {
     }
 
     public void save(Resume resume) {
-        storage[size] = resume;
-        size++;
+        if (size < 10000) {
+            if (indexStorage(resume.getUuid()) == -1) {
+                storage[size] = resume;
+                size++;
+            } else {
+                System.out.println("Такое резюме уже существует");
+            }
+        } else {
+            System.out.println("База данных резюме заполнена!");
+        }
     }
 
     public void update(Resume resume) {
-
+        if (indexStorage(resume.getUuid()) >= 0) {
+            storage[indexStorage(resume.getUuid())] = resume;
+        }
+        System.out.println("Такое резюме отсутвует");
     }
 
     public Resume get(String uuid) {
-        for (int i = 0; i < size; i++) {
-            if (storage[i].getUuid() == uuid) {
-                return storage[i];
+        if (indexStorage(uuid) >= 0) {
+            for (int i = 0; i < size; i++) {
+                if (storage[i].getUuid() == uuid) {
+                    return storage[i];
+                }
             }
         }
         return null;
     }
 
     public void delete(String uuid) {
-        for (int i = 0; i < size; i++) {
-            if (storage[i].getUuid() == uuid) {
-                size--;
-                storage[i] = storage[size];
-                storage[size] = null;
-                break;
+        if (indexStorage(uuid) >= 0) {
+            for (int i = 0; i < size; i++) {
+                if (storage[i].getUuid() == uuid) {
+                    size--;
+                    storage[i] = storage[size];
+                    storage[size] = null;
+                    break;
+                }
             }
+        } else {
+            System.out.println("Такое резюме отсутвует");
         }
     }
 
@@ -54,5 +71,14 @@ public class ArrayStorage {
 
     public int size() {
         return size;
+    }
+
+    int indexStorage(String uuid) {
+        for (int i = 0; i < size; i++) {
+            if (storage[i].getUuid() == uuid) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
