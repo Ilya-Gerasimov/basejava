@@ -10,23 +10,16 @@ import com.urise.webapp.storage.Storage;
 public class MainTestArrayStorage {
     //private final static Storage ARRAY_STORAGE = new SortedArrayStorage();
     private final static Storage ARRAY_STORAGE = new ArrayStorage();
+
     public static void main(String[] args) {
-        Resume r1 = new Resume();
-        r1.setUuid("uuid1");
-        Resume r2 = new Resume();
-        r2.setUuid("uuid2");
-        Resume r3 = new Resume();
-        r3.setUuid("uuid3");
-        Resume r4 = new Resume();
-        r4.setUuid("uuid4");
-        Resume r5 = new Resume();
-        r5.setUuid("uuid5");
-        Resume r6 = new Resume();
-        r6.setUuid("uuid6");
-        Resume r7 = new Resume();
-        r7.setUuid("uuid7");
-        Resume r8 = new Resume();
-        r8.setUuid("uuid8");
+        Resume r1 = new Resume("uuid1");
+        Resume r2 = new Resume("uuid2");
+        Resume r3 = new Resume("uuid3");
+        Resume r4 = new Resume("uuid4");
+        Resume r5 = new Resume("uuid5");
+        Resume r6 = new Resume("uuid6");
+        Resume r7 = new Resume("uuid7");
+        Resume r8 = new Resume("uuid8");
 
         System.out.println("Сохраняем объекты");
         ARRAY_STORAGE.save(r1);
@@ -55,14 +48,6 @@ public class MainTestArrayStorage {
         System.out.println("Size: " + ARRAY_STORAGE.size());
 
         System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
-
-//        System.out.println("Сохраняем в r5 uuid8");
-//        r5.setUuid("uuid8");
-
-        System.out.println("Update r5 c uuid8");
-        ARRAY_STORAGE.update(r5);
-
-        System.out.println("Получаем getUuid r5: " + ARRAY_STORAGE.get(r5.getUuid()));
 
         printAll();
         ARRAY_STORAGE.delete(r3.getUuid());
