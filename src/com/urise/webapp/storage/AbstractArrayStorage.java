@@ -51,8 +51,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     @Override
     public void doDelete(int index) {
-        deleteResume(index);
         size--;
+        deleteResume(index);
         storage[size] = null;
     }
 

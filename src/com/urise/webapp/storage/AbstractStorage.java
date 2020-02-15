@@ -31,7 +31,7 @@ public abstract class AbstractStorage implements Storage {
 
     private int getNotExistedSearchIndex(String uuid) {
         int index = getIndex(uuid);
-        if (index > 0) {
+        if (index >= 0) {
             throw new ExistStorageException(uuid);
         } else {
             return index;
