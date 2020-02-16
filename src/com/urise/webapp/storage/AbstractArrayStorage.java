@@ -22,9 +22,9 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    public void doSave(Resume resume, int index) {
+    public void doSave(Resume resume, Object index) {
         if (size < storage.length) {
-            insertResume(resume, index);
+            insertResume(resume, (Integer) index);
             size++;
         } else {
             throw new StorageException("БД резюме заполнена", resume.getUuid());
@@ -40,25 +40,30 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    public Resume doGet(int index) {
-        return storage[index];
+    public Resume doGet(Object index) {
+        return storage[(Integer) index];
     }
 
     @Override
-    public void doUpdate(Resume resume, int index) {
-        storage[index] = resume;
+    public void doUpdate(Resume resume, Object index) {
+        storage[(Integer) index] = resume;
     }
 
     @Override
-    public void doDelete(int index) {
+    public void doDelete(Object index) {
         size--;
-        deleteResume(index);
+        deleteResume((Integer) index);
         storage[size] = null;
+    }
+
+    @Override
+    protected boolean isExist(Object index) {
+        return (Integer) index >= 0;
     }
 
     protected abstract void deleteResume(int index);
 
-    protected abstract int getIndex(String uuid);
+    protected abstract Integer getIndex(String uuid);
 
     protected abstract void insertResume(Resume resume, int index);
 }
