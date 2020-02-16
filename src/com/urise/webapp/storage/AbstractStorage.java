@@ -7,54 +7,53 @@ import com.urise.webapp.model.Resume;
 public abstract class AbstractStorage implements Storage {
     @Override
     public void save(Resume resume) {
-        Object searchIndex = getNotExistedSearchIndex(resume.getUuid());
-        doSave(resume, searchIndex);
+        Object searchKey = getNotExistedSearchIndex(resume.getUuid());
+        doSave(resume, searchKey);
     }
 
     @Override
     public Resume get(String uuid) {
-        Object searchIndex = getExistedSearchIndex(uuid);
-        return doGet(searchIndex);
+        Object searchKey = getExistedSearchIndex(uuid);
+        return doGet(searchKey);
     }
 
     @Override
     public void update(Resume resume) {
-        Object searchIndex = getExistedSearchIndex(resume.getUuid());
-        doUpdate(resume, searchIndex);
+        Object searchKey = getExistedSearchIndex(resume.getUuid());
+        doUpdate(resume, searchKey);
     }
 
     @Override
     public void delete(String uuid) {
-        Object searchIndex = getExistedSearchIndex(uuid);
-        doDelete(searchIndex);
+        Object searchKey = getExistedSearchIndex(uuid);
+        doDelete(searchKey);
     }
 
     private Object getNotExistedSearchIndex(String uuid) {
-        Object index = getIndex(uuid);
-        if (isExist(index)) {
+        Object searchKey = searchKey(uuid);
+        if (isExist(searchKey)) {
             throw new ExistStorageException(uuid);
         }
-        return index;
+        return searchKey;
     }
 
     private Object getExistedSearchIndex(String uuid) {
-        Object index = getIndex(uuid);
-        if (!isExist(index)) {
+        Object searchKey = searchKey(uuid);
+        if (!isExist(searchKey)) {
             throw new NotExistStorageException(uuid);
         }
-        return index;
+        return searchKey;
     }
 
-    protected abstract Object getIndex(String uuid);
+    protected abstract Object searchKey(String uuid);
 
-    protected abstract boolean isExist(Object index);
+    protected abstract boolean isExist(Object searchKey);
 
-    protected abstract void doSave(Resume resume, Object searchIndex);
+    protected abstract void doSave(Resume resume, Object searchKey);
 
-    protected abstract Resume doGet(Object searchIndex);
+    protected abstract Resume doGet(Object searchKey);
 
-    protected abstract void doUpdate(Resume resume, Object searchIndex);
+    protected abstract void doUpdate(Resume resume, Object searchKey);
 
-    protected abstract void doDelete(Object searchIndex);
+    protected abstract void doDelete(Object searchKey);
 }
-
