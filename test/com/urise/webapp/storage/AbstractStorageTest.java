@@ -7,22 +7,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractStorageTest {
     protected Storage storage;
     private static final String UUID_1 = "uuid1";
-    private static final Resume RESUME_1 = new Resume(UUID_1);
+    private static final Resume RESUME_1 = new Resume(UUID_1, "FullName_1");
     private static final String UUID_2 = "uuid2";
-    private static final Resume RESUME_2 = new Resume(UUID_2);
+    private static final Resume RESUME_2 = new Resume(UUID_2, "FullName_2");
     private static final String UUID_3 = "uuid3";
-    private static final Resume RESUME_3 = new Resume(UUID_3);
+    private static final Resume RESUME_3 = new Resume(UUID_3, "FullName_3");
     private static final String UUID_4 = "uuid4";
-    private static final Resume RESUME_4 = new Resume(UUID_4);
+    private static final Resume RESUME_4 = new Resume(UUID_4, "FullName_4");
     private static final String UUID_5 = "uuid5";
-    private static final Resume RESUME_5 = new Resume(UUID_5);
+    private static final Resume RESUME_5 = new Resume(UUID_5, "FullName_5");
 
     public AbstractStorageTest(Storage storage) {
         this.storage = storage;
@@ -61,11 +61,10 @@ public abstract class AbstractStorageTest {
     }
 
     @Test
-    public void getAll() {
-        Resume[] r = storage.getAll();
-        Arrays.sort(r);
-        Resume[] resumes = new Resume[]{RESUME_1, RESUME_2, RESUME_3, RESUME_4};
-        assertArrayEquals(resumes, r);
+    public void getAllSorted() throws Exception {
+        List<Resume> list = storage.getAllSorted();
+        assertEquals(4, list.size());
+        assertEquals(list, Arrays.asList(RESUME_1, RESUME_2, RESUME_3, RESUME_4));
     }
 
     @Test
@@ -83,7 +82,7 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void update() {
-        Resume resume = new Resume(UUID_3);
+        Resume resume = new Resume(UUID_3, "FullName_3");
         storage.update(resume);
         assertEquals(resume, storage.get(UUID_3));
     }
