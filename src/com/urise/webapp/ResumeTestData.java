@@ -8,7 +8,6 @@ import com.urise.webapp.storage.Storage;
 import static com.urise.webapp.model.ContactType.*;
 import static com.urise.webapp.model.SectionType.*;
 
-
 public class ResumeTestData {
     private final static Storage ARRAY_STORAGE = new ArrayStorage();
 
@@ -23,31 +22,31 @@ public class ResumeTestData {
 
         System.out.println("Добавляем телефон");
         r1.addContact(PHONE, "+7(921) 855-0482");
-        System.out.println("Get PHONE: " + r1.getContact(PHONE));
+        System.out.println("Get: " + PHONE.getTitle() + ": " + r1.getContact(PHONE));
 
         System.out.println("Добавляем Скайп");
         r1.addContact(SKYPE, "grigory.kislin");
-        System.out.println("Get SKYPE: " + r1.getContact(SKYPE));
+        System.out.println("Get: " + SKYPE.getTitle() + ": " + r1.getContact(SKYPE));
 
         System.out.println("Добавляем Почту");
         r1.addContact(SKYPE, "gkislin@yandex.ru");
-        System.out.println("Get E_MAIL: " + r1.getContact(E_MAIL));
+        System.out.println("Get " + E_MAIL.getTitle() + ": " + r1.getContact(E_MAIL));
 
         System.out.println("Добавляем профиль LinkedIn");
         r1.addContact(LINKEDIN, "https://www.linkedin.com/in/gkislin");
-        System.out.println("Get профиль LinkedIn: " + r1.getContact(LINKEDIN));
+        System.out.println("Get " + LINKEDIN.getTitle() + ": " + r1.getContact(LINKEDIN));
 
         System.out.println("Добавляем профиль GitHub");
         r1.addContact(GITHUB, "https://github.com/gkislin");
-        System.out.println("Get профиль GitHub: " + r1.getContact(GITHUB));
+        System.out.println("Get " + GITHUB.getTitle() + ": " + r1.getContact(GITHUB));
 
         System.out.println("Добавляем профиль Stackoverflow");
         r1.addContact(STATCKOVERFLOW, "https://stackoverflow.com/users/548473/grigory-kislin");
-        System.out.println("Get профиль Stackoverflow: " + r1.getContact(STATCKOVERFLOW));
+        System.out.println("Get " + STATCKOVERFLOW.getTitle() + ": " + r1.getContact(STATCKOVERFLOW));
 
         System.out.println("Добавляем домашнюю страницу");
         r1.addContact(HOME_PAGE, "http://gkislin.ru/");
-        System.out.println("Get домашнюю страницу: " + r1.getContact(HOME_PAGE));
+        System.out.println("Get " + HOME_PAGE.getTitle() + ": " + r1.getContact(HOME_PAGE));
 
         System.out.println("Добавляем позицию");
         r1.addSection(OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и " +
