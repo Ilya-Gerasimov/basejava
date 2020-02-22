@@ -1,6 +1,7 @@
 package com.urise.webapp.model;
 
 import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +9,7 @@ public class Organization {
     private final Link homePage;
     private List<Position> positions;
 
-    public Organization(String name, String url, List<Position> positions) {
+    public Organization(String name, String url, ArrayList<Position> positions) {
         Objects.requireNonNull(name, "name cannot be null");
         this.homePage = new Link(name, url);
         this.positions = positions;
