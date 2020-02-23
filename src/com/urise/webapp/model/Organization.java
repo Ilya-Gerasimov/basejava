@@ -5,13 +5,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static com.urise.webapp.util.DateUtil.NOW;
+
 public class Organization {
     private final Link homePage;
     private List<Position> positions;
 
     public Organization(String name, String url, Position... positions) {
-        this.homePage = new Link(name, url);
-        this.positions = Arrays.asList(positions);
+        this(new Link(name, url), Arrays.asList(positions));
+    }
+
+    public Organization(Link homePage, List<Position> positions) {
+        this.homePage = homePage;
+        this.positions = positions;
     }
 
     @Override
@@ -45,6 +51,10 @@ public class Organization {
         private final String description;
         private final YearMonth startDate;
         private final YearMonth endDate;
+
+        public Position(String title, String description, YearMonth startDate) {
+            this(title, description, startDate, NOW);
+        }
 
         public Position(String title, String description, YearMonth startDate, YearMonth endDate) {
             Objects.requireNonNull(title, "title cannot be null");

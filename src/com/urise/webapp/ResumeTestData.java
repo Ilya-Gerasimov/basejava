@@ -79,7 +79,7 @@ public class ResumeTestData {
         Experience.add( new Organization("Java Online Projects", "http://javaops.ru/",
                 new Organization.Position("Автор проекта.", "Создание, организация и проведение Java " +
                         "онлайн проектов и стажировок.",
-                        YearMonth.of(2013, 10), YearMonth.of(2020, 2))));
+                        YearMonth.of(2013, 10))));
         Experience.add( new Organization("Wrike", "https://www.wrike.com/",
                 new Organization.Position("Старший разработчик (backend)", "Проектирование и разработка " +
                         "онлайн платформы управления проектами Wrike.",
