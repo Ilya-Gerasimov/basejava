@@ -31,25 +31,27 @@ public class MainFile {
             throw new RuntimeException(e);
         }
 
-    // Вторая часть ДЗ. Файлы директории выводились вперемешку с директориями, поэтому вынес в отдельный цикл
+        // Вторая часть ДЗ. Файлы директории выводились вперемешку с директориями, поэтому вынес в отдельный цикл
 
         File folder = new File("./src/com/urise/webapp");
 
         for (File files : folder.listFiles()) {
-            if (files.isDirectory()) {
-                System.out.println(files.getName());
-                for (String d : files.list()) {
-                    System.out.println("     " + d);
+            if (files != null) {
+                if (files.isDirectory()) {
+                    System.out.println(files.getName());
+                    for (String d : files.list()) {
+                        System.out.println("     " + d);
+                    }
                 }
             }
         }
         System.out.println("Файлы текущей директории");
 
         for (File files : folder.listFiles()) {
-
-            if (!file.isDirectory())
-
-                System.out.println("     " + files.getName());
+            if (files != null) {
+                if (!file.isDirectory())
+                    System.out.println("     " + files.getName());
+            }
         }
     }
 }

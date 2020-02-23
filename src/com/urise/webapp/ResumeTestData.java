@@ -34,70 +34,70 @@ public class ResumeTestData {
                 " Пурист кода и архитектуры."));
 
 //        Добавляем данные в секцию ListSection
-        List<String> toAchievement = new ArrayList<>();
-        toAchievement.add("С 2013 года: разработка проектов \"Разработка Web приложения\",\"Java Enterprise\", \"Многомодульный maven. " +
+        List<String> Achievement = new ArrayList<>();
+        Achievement.add("С 2013 года: разработка проектов \"Разработка Web приложения\",\"Java Enterprise\", \"Многомодульный maven. " +
                 "Многопоточность. XML (JAXB/StAX). Веб сервисы (JAX-RS/SOAP). Удаленное взаимодействие (JMS/AKKA)\". " +
                 "Организация онлайн стажировок и ведение проектов. Более 1000 выпускников.");
-        toAchievement.add("Реализация двухфакторной аутентификации для онлайн платформы управления проектами Wrike. Интеграция с Twilio, " +
+        Achievement.add("Реализация двухфакторной аутентификации для онлайн платформы управления проектами Wrike. Интеграция с Twilio, " +
                 "DuoSecurity, Google Authenticator, Jira, Zendesk.");
-        toAchievement.add("Налаживание процесса разработки и непрерывной интеграции ERP системы River BPM. Интеграция с 1С, " +
+        Achievement.add("Налаживание процесса разработки и непрерывной интеграции ERP системы River BPM. Интеграция с 1С, " +
                 "Bonita BPM, CMIS, LDAP. Разработка приложения управления окружением на стеке: Scala/Play/Anorm/JQuery. " +
                 "Разработка SSO аутентификации и авторизации различных ERP модулей, интеграция CIFS/SMB java сервера.");
-        toAchievement.add("Реализация c нуля Rich Internet Application приложения на стеке технологий JPA, Spring, Spring-MVC, " +
+        Achievement.add("Реализация c нуля Rich Internet Application приложения на стеке технологий JPA, Spring, Spring-MVC, " +
                 "GWT, ExtGWT (GXT), Commet, HTML5, Highstock для алгоритмического трейдинга.");
-        toAchievement.add("Создание JavaEE фреймворка для отказоустойчивого взаимодействия слабо-связанных сервисов (SOA-base " +
+        Achievement.add("Создание JavaEE фреймворка для отказоустойчивого взаимодействия слабо-связанных сервисов (SOA-base " +
                 "архитектура, JAX-WS, JMS, AS Glassfish). Сбор статистики сервисов и информации о состоянии через систему " +
                 "мониторинга Nagios. Реализация онлайн клиента для администрирования и мониторинга системы по JMX (Jython/ Django).");
-        toAchievement.add("Реализация протоколов по приему платежей всех основных платежных системы России (Cyberplat, Eport, " +
+        Achievement.add("Реализация протоколов по приему платежей всех основных платежных системы России (Cyberplat, Eport, " +
                 "Chronopay, Сбербанк), Белоруcсии(Erip, Osmp) и Никарагуа.");
-        r1.addSection(ACHIEVEMENT, new ListSection(toAchievement));
+        r1.addSection(ACHIEVEMENT, new ListSection(Achievement));
 
-        List<String> toQualification = new ArrayList<>();
-        toQualification.add("JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2");
-        toQualification.add("Version control: Subversion, Git, Mercury, ClearCase, Perforce");
-        toQualification.add("DB: PostgreSQL(наследование, pgplsql, PL/Python), Redis (Jedis), H2, Oracle,");
-        toQualification.add("MySQL, SQLite, MS SQL, HSQLDB");
-        toQualification.add("Languages: Java, Scala, Python/Jython/PL-Python, JavaScript, Groovy,");
-        toQualification.add("XML/XSD/XSLT, SQL, C/C++, Unix shell scripts,");
-        toQualification.add("Java Frameworks: Java 8 (Time API, Streams), Guava, Java Executor, MyBatis, Spring (MVC, Security, " +
+        List<String> Qualification = new ArrayList<>();
+        Qualification.add("JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2");
+        Qualification.add("Version control: Subversion, Git, Mercury, ClearCase, Perforce");
+        Qualification.add("DB: PostgreSQL(наследование, pgplsql, PL/Python), Redis (Jedis), H2, Oracle,");
+        Qualification.add("MySQL, SQLite, MS SQL, HSQLDB");
+        Qualification.add("Languages: Java, Scala, Python/Jython/PL-Python, JavaScript, Groovy,");
+        Qualification.add("XML/XSD/XSLT, SQL, C/C++, Unix shell scripts,");
+        Qualification.add("Java Frameworks: Java 8 (Time API, Streams), Guava, Java Executor, MyBatis, Spring (MVC, Security, " +
                 "Data, Clouds, Boot), JPA (Hibernate, EclipseLink), Guice, GWT(SmartGWT, ExtGWT/GXT), Vaadin, " +
                 "Jasperreports, Apache Commons, Eclipse SWT, JUnit, Selenium (htmlelements).");
-        toQualification.add("Python: Django.");
-        toQualification.add("JavaScript: jQuery, ExtJS, Bootstrap.js, underscore.js");
-        toQualification.add("Scala: SBT, Play2, Specs2, Anorm, Spray, Akka");
-        toQualification.add("Технологии: Servlet, JSP/JSTL, JAX-WS, REST, EJB, RMI, JMS, JavaMail, JAXB, StAX, SAX, DOM, XSLT, " +
+        Qualification.add("Python: Django.");
+        Qualification.add("JavaScript: jQuery, ExtJS, Bootstrap.js, underscore.js");
+        Qualification.add("Scala: SBT, Play2, Specs2, Anorm, Spray, Akka");
+        Qualification.add("Технологии: Servlet, JSP/JSTL, JAX-WS, REST, EJB, RMI, JMS, JavaMail, JAXB, StAX, SAX, DOM, XSLT, " +
                 "MDB, JMX, JDBC, JPA, JNDI, JAAS, SOAP, AJAX, Commet, HTML5, ESB, CMIS, BPMN2, LDAP, OAuth1, OAuth2, JWT.");
-        toQualification.add("Инструменты: Maven + plugin development, Gradle, настройка Ngnix,");
-        toQualification.add("администрирование Hudson/Jenkins, Ant + custom task, SoapUI, JPublisher, Flyway, Nagios, iReport, " +
+        Qualification.add("Инструменты: Maven + plugin development, Gradle, настройка Ngnix,");
+        Qualification.add("администрирование Hudson/Jenkins, Ant + custom task, SoapUI, JPublisher, Flyway, Nagios, iReport, " +
                 "OpenCmis, Bonita, pgBouncer.");
-        toQualification.add("Отличное знание и опыт применения концепций ООП, SOA, шаблонов проектрирования, архитектурных " +
+        Qualification.add("Отличное знание и опыт применения концепций ООП, SOA, шаблонов проектрирования, архитектурных " +
                 "шаблонов, UML, функционального программирования");
-        toQualification.add("Родной русский, английский \"upper intermediate\"");
-        r1.addSection(QUALIFICATIONS, new ListSection(toQualification));
+        Qualification.add("Родной русский, английский \"upper intermediate\"");
+        r1.addSection(QUALIFICATIONS, new ListSection(Qualification));
 
-        List<Organization> toExperience = new ArrayList<>();
-        toExperience.add( new Organization("Java Online Projects", "http://javaops.ru/",
+        List<Organization> Experience = new ArrayList<>();
+        Experience.add( new Organization("Java Online Projects", "http://javaops.ru/",
                 new Organization.Position("Автор проекта.", "Создание, организация и проведение Java " +
                         "онлайн проектов и стажировок.",
                         YearMonth.of(2013, 10), YearMonth.of(2020, 2))));
-        toExperience.add( new Organization("Wrike", "https://www.wrike.com/",
+        Experience.add( new Organization("Wrike", "https://www.wrike.com/",
                 new Organization.Position("Старший разработчик (backend)", "Проектирование и разработка " +
                         "онлайн платформы управления проектами Wrike.",
                         YearMonth.of(2014, 10), YearMonth.of(2016, 1))));
-        r1.addSection(EXPERIENCE, new OrganizationSection(toExperience));
+        r1.addSection(EXPERIENCE, new OrganizationSection(Experience));
 
-        List<Organization> toEducation = new ArrayList<>();
-        toEducation.add( new Organization("Санкт-Петербургский национальный исследовательский университет",
+        List<Organization> Education = new ArrayList<>();
+        Education.add( new Organization("Санкт-Петербургский национальный исследовательский университет",
                 "https://itmo.ru/ru/",
                 new Organization.Position("Аспирантура (программист С, С++)", "",
                         YearMonth.of(1993, 9), YearMonth.of(1996, 7)),
                 new Organization.Position("Инженер (программист Fortran, C)", "",
                         YearMonth.of(1987, 6), YearMonth.of(1993, 7))));
-        toEducation.add( new Organization("Заочная физико-техническая школа при МФТИ",
+        Education.add( new Organization("Заочная физико-техническая школа при МФТИ",
                 "http://www.school.mipt.ru",
                 new Organization.Position("Аспирантура (программист С, С++)", "",
                         YearMonth.of(1984, 9), YearMonth.of(1987, 6))));
-        r1.addSection(EDUCATION, new OrganizationSection(toEducation));
+        r1.addSection(EDUCATION, new OrganizationSection(Education));
 
 //        Начало печати резюме
         System.out.println("Получаем резюме");
