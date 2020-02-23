@@ -1,7 +1,7 @@
 package com.urise.webapp.model;
 
 import java.time.YearMonth;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,20 +9,36 @@ public class Organization {
     private final Link homePage;
     private List<Position> positions;
 
-    public Organization(String name, String url, ArrayList<Position> positions) {
-        Objects.requireNonNull(name, "name cannot be null");
+    public Organization(String name, String url, Position... positions) {
         this.homePage = new Link(name, url);
-        this.positions = positions;
-     }
+        this.positions = Arrays.asList(positions);
+    }
 
     @Override
     public String toString() {
         return "\nOrganization{" +
                 "homePage=" + homePage +
-                ", position=" + positions +
+                ", \nposition=" + positions +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Organization that = (Organization) o;
+
+        if (!homePage.equals(that.homePage)) return false;
+        return positions.equals(that.positions);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = homePage.hashCode();
+        result = 31 * result + positions.hashCode();
+        return result;
+    }
 
     public static class Position {
         private final String title;
