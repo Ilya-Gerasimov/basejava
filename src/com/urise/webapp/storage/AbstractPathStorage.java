@@ -8,17 +8,32 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public abstract class AbstractPathStorage extends AbstractStorage<Path> {
+public class AbstractPathStorage extends AbstractStorage<Path> {
     private Path directory;
 
-    protected abstract void doWrite(Resume r, OutputStream os) throws IOException;
+//    protected abstract void doWrite(Resume r, OutputStream os) throws IOException;
+//
+//    protected abstract Resume doRead(InputStream is) throws IOException;
+    // я вынесу потом одинаковые куски кода. я сделал не абстрактными классы для проверки тестов
 
-    protected abstract Resume doRead(InputStream is) throws IOException;
+    protected void doWrite(Resume r, OutputStream os) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(os)) {
+            oos.writeObject(r);
+        }
+    }
+
+    protected Resume doRead(InputStream is) throws IOException {
+        try (ObjectInputStream ois = new ObjectInputStream(is)) {
+            return (Resume) ois.readObject();
+        } catch (ClassNotFoundException e) {
+            throw new StorageException("Error read resume", null, e);
+        }
+    }
 
     protected AbstractPathStorage(String dir) {
         directory = Paths.get(dir);
@@ -40,7 +55,12 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
 
     @Override
     protected List<Resume> doCopyAll() {
-        return new ArrayList(Arrays.asList(getFilesList().toArray()));
+        List<Path> paths = getFilesList().collect(Collectors.toList());
+        List<Resume> lists = new ArrayList<>(paths.size());
+        for (Path path : paths) {
+            lists.add(doGet(path));
+        }
+        return lists;
     }
 
     @Override
@@ -71,7 +91,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
 
     @Override
     protected boolean isExist(Path path) {
-        return Files.isRegularFile(path);
+        return Files.exists(path);
     }
 
     @Override

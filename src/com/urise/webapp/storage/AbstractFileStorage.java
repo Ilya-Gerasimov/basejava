@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public abstract class AbstractFileStorage extends AbstractStorage<File> {
+public class AbstractFileStorage extends AbstractStorage<File> {
     private File directory;
 
     protected AbstractFileStorage(File directory) {
@@ -23,9 +23,24 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         this.directory = directory;
     }
 
-    protected abstract void doWrite(Resume r, OutputStream os) throws IOException;
+//    protected abstract void doWrite(Resume r, OutputStream os) throws IOException;
+//
+//    protected abstract Resume doRead(InputStream is) throws IOException;
 
-    protected abstract Resume doRead(InputStream is) throws IOException;
+    protected void doWrite(Resume r, OutputStream os) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(os)) {
+            oos.writeObject(r);
+        }
+    }
+
+
+    protected Resume doRead(InputStream is) throws IOException {
+        try (ObjectInputStream ois = new ObjectInputStream(is)) {
+            return (Resume) ois.readObject();
+        } catch (ClassNotFoundException e) {
+            throw new StorageException("Error read resume", null, e);
+        }
+    }
 
     @Override
     public void clear() {
@@ -97,10 +112,10 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         if (files == null) {
             throw new StorageException("Directory read error", null);
         }
-        List<Resume> list = new ArrayList<>(files.length);
+        List<Resume> lists = new ArrayList<>(files.length);
         for (File file : files) {
-            list.add(doGet(file));
+            lists.add(doGet(file));
         }
-        return list;
+        return lists;
     }
 }
