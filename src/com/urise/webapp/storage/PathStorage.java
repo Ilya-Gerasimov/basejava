@@ -19,9 +19,11 @@ public class PathStorage extends AbstractStorage<Path> {
     private Path directory;
     private StreamSerializer streamSerializer;
 
-    protected PathStorage(String dir) {
+    protected PathStorage(String dir, StreamSerializer streamSerializer) {
+        Objects.requireNonNull(dir, "directory must not be null");
+
+        this.streamSerializer = streamSerializer;
         directory = Paths.get(dir);
-        Objects.requireNonNull(directory, "directory must not be null");
         if (!Files.isDirectory(directory) || !Files.isWritable(directory)) {
             throw new IllegalArgumentException(dir + " is not directory or is not writable");
         }
@@ -45,18 +47,6 @@ public class PathStorage extends AbstractStorage<Path> {
     @Override
     protected Path searchKey(String uuid) {
         return directory.resolve(uuid);
-    }
-
-    private String getFileName(Path path) {
-        return path.getFileName().toString();
-    }
-
-    private Stream<Path> getFilesList() {
-        try {
-            return Files.list(directory);
-        } catch (IOException e) {
-            throw new StorageException("Directory read error", null);
-        }
     }
 
     @Override
@@ -98,6 +88,18 @@ public class PathStorage extends AbstractStorage<Path> {
             return streamSerializer.doRead(new BufferedInputStream(Files.newInputStream(path)));
         } catch (IOException e) {
             throw new StorageException("Path read error", getFileName(path), e);
+        }
+    }
+
+    private String getFileName(Path path) {
+        return path.getFileName().toString();
+    }
+
+    private Stream<Path> getFilesList() {
+        try {
+            return Files.list(directory);
+        } catch (IOException e) {
+            throw new StorageException("Directory read error", e);
         }
     }
 }
