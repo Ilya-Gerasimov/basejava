@@ -10,23 +10,69 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.urise.webapp.model.ContactType.*;
 import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractStorageTest {
     protected static final File STORAGE_DIR = new File("./src/com/urise/webapp/file");
     protected Storage storage;
     private static final String UUID_1 = "uuid1";
-    private static final Resume RESUME_1 = new Resume(UUID_1, "FullName_1");
     private static final String UUID_2 = "uuid2";
-    private static final Resume RESUME_2 = new Resume(UUID_2, "FullName_2");
     private static final String UUID_3 = "uuid3";
-    private static final Resume RESUME_3 = new Resume(UUID_3, "FullName_3");
     private static final String UUID_4 = "uuid4";
-    private static final Resume RESUME_4 = new Resume(UUID_4, "FullName_4");
     private static final String UUID_5 = "uuid5";
-    private static final Resume RESUME_5 = new Resume(UUID_5, "FullName_5");
 
-    public AbstractStorageTest(Storage storage) {
+    private static final Resume RESUME_1;
+    private static final Resume RESUME_2;
+    private static final Resume RESUME_3;
+    private static final Resume RESUME_4;
+    private static final Resume RESUME_5;
+
+    static {
+        RESUME_1 = new Resume(UUID_1, "Name1");
+        RESUME_2 = new Resume(UUID_2, "Name2");
+        RESUME_3 = new Resume(UUID_3, "Name3");
+        RESUME_4 = new Resume(UUID_4, "Name4");
+        RESUME_5 = new Resume(UUID_5, "Name4");
+        RESUME_1.addContact(PHONE, "+7(921) 855-0482");
+        RESUME_1.addContact(SKYPE, "grigory.kislin");
+        RESUME_1.addContact(E_MAIL, "gkislin@yandex.ru");
+//        RESUME_1.addSection(OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и " +
+//                "Enterprise технологиям."));
+//        List<String> Achievement = new ArrayList<>();
+//        Achievement.add("С 2013 года: разработка проектов \"Разработка Web приложения\",\"Java Enterprise\", \"Многомодульный maven. " +
+//                "Многопоточность. XML (JAXB/StAX). Веб сервисы (JAX-RS/SOAP). Удаленное взаимодействие (JMS/AKKA)\". " +
+//                "Организация онлайн стажировок и ведение проектов. Более 1000 выпускников.");
+//        Achievement.add("Реализация двухфакторной аутентификации для онлайн платформы управления проектами Wrike. Интеграция с Twilio, " +
+//                "DuoSecurity, Google Authenticator, Jira, Zendesk.");
+//        RESUME_1.addSection(ACHIEVEMENT, new ListSection(Achievement));
+//        List<String> Qualification = new ArrayList<>();
+//        Qualification.add("JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2");
+//        Qualification.add("Version control: Subversion, Git, Mercury, ClearCase, Perforce");
+//        Qualification.add("DB: PostgreSQL(наследование, pgplsql, PL/Python), Redis (Jedis), H2, Oracle,");
+//        RESUME_1.addSection(QUALIFICATIONS, new ListSection(Qualification));
+//        List<Organization> Experience = new ArrayList<>();
+//        Experience.add(new Organization("Java Online Projects", "http://javaops.ru/",
+//                new Organization.Position(2013, Month.NOVEMBER, "Автор проекта.", "Создание, организация и проведение Java " +
+//                        "онлайн проектов и стажировок.")));
+//        Experience.add(new Organization("Wrike", "https://www.wrike.com/",
+//                new Organization.Position(2014, Month.NOVEMBER, 2016, Month.JANUARY, "Старший разработчик (backend)", "Проектирование и разработка " +
+//                        "онлайн платформы управления проектами Wrike.")));
+//        RESUME_1.addSection(EXPERIENCE, new OrganizationSection(Experience));
+//
+//        List<Organization> Education = new ArrayList<>();
+//        Education.add(new Organization("Санкт-Петербургский национальный исследовательский университет",
+//                "https://itmo.ru/ru/",
+//                new Organization.Position(1993, Month.SEPTEMBER, 1996, Month.JULY, "Аспирантура (программист С, С++)", ""),
+//                new Organization.Position(1987, Month.JUNE, 1993, Month.JULY, "Инженер (программист Fortran, C)",
+//                        "")));
+//        Education.add(new Organization("Заочная физико-техническая школа при МФТИ",
+//                "http://www.school.mipt.ru",
+//                new Organization.Position(1984, Month.SEPTEMBER, 1987, Month.JUNE, "Аспирантура (программист С, С++)", "")));
+//        RESUME_1.addSection(EDUCATION, new OrganizationSection(Education));
+    }
+
+    protected AbstractStorageTest(Storage storage) {
         this.storage = storage;
     }
 

@@ -4,7 +4,7 @@ import com.urise.webapp.model.*;
 import com.urise.webapp.storage.ArrayStorage;
 import com.urise.webapp.storage.Storage;
 
-import java.time.YearMonth;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,27 +76,23 @@ public class ResumeTestData {
         r1.addSection(QUALIFICATIONS, new ListSection(Qualification));
 
         List<Organization> Experience = new ArrayList<>();
-        Experience.add( new Organization("Java Online Projects", "http://javaops.ru/",
-                new Organization.Position("Автор проекта.", "Создание, организация и проведение Java " +
-                        "онлайн проектов и стажировок.",
-                        YearMonth.of(2013, 10))));
-        Experience.add( new Organization("Wrike", "https://www.wrike.com/",
-                new Organization.Position("Старший разработчик (backend)", "Проектирование и разработка " +
-                        "онлайн платформы управления проектами Wrike.",
-                        YearMonth.of(2014, 10), YearMonth.of(2016, 1))));
+        Experience.add(new Organization("Java Online Projects", "http://javaops.ru/",
+                new Organization.Position(2013, Month.NOVEMBER, "Автор проекта.", "Создание, организация и проведение Java " +
+                        "онлайн проектов и стажировок.")));
+        Experience.add(new Organization("Wrike", "https://www.wrike.com/",
+                new Organization.Position(2014, Month.NOVEMBER, 2016, Month.JANUARY, "Старший разработчик (backend)", "Проектирование и разработка " +
+                        "онлайн платформы управления проектами Wrike.")));
         r1.addSection(EXPERIENCE, new OrganizationSection(Experience));
 
         List<Organization> Education = new ArrayList<>();
-        Education.add( new Organization("Санкт-Петербургский национальный исследовательский университет",
+        Education.add(new Organization("Санкт-Петербургский национальный исследовательский университет",
                 "https://itmo.ru/ru/",
-                new Organization.Position("Аспирантура (программист С, С++)", "",
-                        YearMonth.of(1993, 9), YearMonth.of(1996, 7)),
-                new Organization.Position("Инженер (программист Fortran, C)", "",
-                        YearMonth.of(1987, 6), YearMonth.of(1993, 7))));
-        Education.add( new Organization("Заочная физико-техническая школа при МФТИ",
+                new Organization.Position(1993, Month.SEPTEMBER, 1996, Month.JULY, "Аспирантура (программист С, С++)", ""),
+                new Organization.Position(1987, Month.JUNE, 1993, Month.JULY, "Инженер (программист Fortran, C)",
+                        "")));
+        Education.add(new Organization("Заочная физико-техническая школа при МФТИ",
                 "http://www.school.mipt.ru",
-                new Organization.Position("Аспирантура (программист С, С++)", "",
-                        YearMonth.of(1984, 9), YearMonth.of(1987, 6))));
+                new Organization.Position(1984, Month.SEPTEMBER, 1987, Month.JUNE, "Аспирантура (программист С, С++)", "")));
         r1.addSection(EDUCATION, new OrganizationSection(Education));
 
 //        Начало печати резюме
