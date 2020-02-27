@@ -2,9 +2,9 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.storage.serializer.ObjectStreamSerializer;
 
-public class ObjectStreamStorageTest extends AbstractStorageTest {
+public class ObjectFileStorageTest extends AbstractStorageTest {
 
-    public ObjectStreamStorageTest() {
+    public ObjectFileStorageTest() {
         super(new FileStorage(STORAGE_DIR, new ObjectStreamSerializer()));
     }
 }
