@@ -40,6 +40,8 @@ public abstract class AbstractStorageTest {
         RESUME_1.addContact(PHONE, "+7(921) 855-0482");
         RESUME_1.addContact(SKYPE, "grigory.kislin");
         RESUME_1.addContact(E_MAIL, "gkislin@yandex.ru");
+        RESUME_1.addSection(PERSONAL, new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность." +
+                " Пурист кода и архитектуры."));
         RESUME_1.addSection(OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и " +
                 "Enterprise технологиям."));
         List<String> Achievement = new ArrayList<>();
@@ -56,7 +58,7 @@ public abstract class AbstractStorageTest {
         RESUME_1.addSection(QUALIFICATIONS, new ListSection(Qualification));
         List<Organization> Experience = new ArrayList<>();
         Experience.add(new Organization("Java Online Projects", "http://javaops.ru/",
-                new Organization.Position(2013, Month.NOVEMBER, "Автор проекта.", "Создание, организация и проведение Java " +
+                new Organization.Position(2013, Month.NOVEMBER, 2020, Month.NOVEMBER,"Автор проекта.", "Создание, организация и проведение Java " +
                         "онлайн проектов и стажировок.")));
         Experience.add(new Organization("Wrike", "https://www.wrike.com/",
                 new Organization.Position(2014, Month.NOVEMBER, 2016, Month.JANUARY, "Старший разработчик (backend)", "Проектирование и разработка " +
@@ -71,7 +73,7 @@ public abstract class AbstractStorageTest {
                         "")));
         Education.add(new Organization("Заочная физико-техническая школа при МФТИ",
                 "http://www.school.mipt.ru",
-                new Organization.Position(1984, Month.SEPTEMBER, 1987, Month.JUNE, "Аспирантура (программист С, С++)", "")));
+                new Organization.Position(1984, Month.SEPTEMBER, 1987, Month.JUNE, "Выпускник школы", "")));
         RESUME_1.addSection(EDUCATION, new OrganizationSection(Education));
     }
 
@@ -148,6 +150,13 @@ public abstract class AbstractStorageTest {
         storage.save(RESUME_5);
         assertSize(5);
         assertEquals(RESUME_5, storage.get(UUID_5));
+    }
+
+    @Test
+    public void readWrite() {
+        storage.clear();
+        storage.save(RESUME_1);
+        assertEquals(RESUME_1, storage.get(UUID_1));
     }
 
     @Test(expected = ExistStorageException.class)
