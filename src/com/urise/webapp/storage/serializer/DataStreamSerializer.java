@@ -23,6 +23,7 @@ public class DataStreamSerializer implements StreamSerializer {
             }
 
             Map<SectionType, AbstractSection> person = r.getSections();
+            dos.writeInt(person.size());
             for (Map.Entry<SectionType, AbstractSection> entry : person.entrySet()) {
                 AbstractSection section = entry.getValue();
                 dos.writeUTF(entry.getKey().name());
@@ -47,7 +48,7 @@ public class DataStreamSerializer implements StreamSerializer {
                             dos.writeUTF(org.getHomePage().getName());
                             dos.writeUTF(org.getHomePage().getUrl());
                             List<Organization.Position> pos = org.getPositions();
-                            dos.writeInt(lists2.size());
+                            dos.writeInt(pos.size());
                             for (Organization.Position poz : pos) {
                                 writeLocalDate(dos, poz.getStartDate());
                                 writeLocalDate(dos, poz.getEndDate());
@@ -71,7 +72,8 @@ public class DataStreamSerializer implements StreamSerializer {
             for (int i = 0; i < size; i++) {
                 resume.addContact(ContactType.valueOf(dis.readUTF()), dis.readUTF());
             }
-            for (int n = 1; n < 7; n++){
+            int size2 = dis.readInt();
+            for (int n = 0; n < size2; n++){
                 SectionType sectionType = SectionType.valueOf(dis.readUTF());
                 resume.addSection(sectionType, readSection(dis, sectionType));
             }
@@ -99,8 +101,8 @@ public class DataStreamSerializer implements StreamSerializer {
                 int size1 = dis.readInt();
                 for (int i = 0; i < size1; i++) {
                     Link homePage = new Link(dis.readUTF(), dis.readUTF());
-                    int size4 = dis.readInt();
-                    for (int n = 0; n < size4; n++) {
+                    int size2 = dis.readInt();
+                    for (int n = 0; n < size2; n++) {
                         positions.add(new Organization.Position(readLocalDate(dis), readLocalDate(dis),
                                 dis.readUTF(), dis.readUTF()));
                     }
