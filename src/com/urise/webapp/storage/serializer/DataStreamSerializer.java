@@ -118,8 +118,6 @@ public class DataStreamSerializer implements StreamSerializer {
     }
 
     private LocalDate readLocalDate(DataInputStream dis) throws IOException {
-        int t = dis.readInt();
-        int m = dis.readInt();
-        return LocalDate.of(t, m, 1);
+        return LocalDate.of(dis.readInt(), dis.readInt(), 1);
     }
 }
