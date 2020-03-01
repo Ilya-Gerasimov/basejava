@@ -58,8 +58,8 @@ public abstract class AbstractStorageTest {
         RESUME_1.addSection(QUALIFICATIONS, new ListSection(Qualification));
         List<Organization> Experience = new ArrayList<>();
         Experience.add(new Organization("Java Online Projects", "http://javaops.ru/",
-                new Organization.Position(2013, Month.NOVEMBER, 2020, Month.NOVEMBER,"Автор проекта.", "Создание, организация и проведение Java " +
-                        "онлайн проектов и стажировок.")));
+                new Organization.Position(2013, Month.NOVEMBER, 2020, Month.NOVEMBER,"Автор проекта.",
+                        "Создание, организация и проведение Java онлайн проектов и стажировок.")));
         Experience.add(new Organization("Wrike", "https://www.wrike.com/",
                 new Organization.Position(2014, Month.NOVEMBER, 2016, Month.JANUARY, "Старший разработчик (backend)", "Проектирование и разработка " +
                         "онлайн платформы управления проектами Wrike.")));
