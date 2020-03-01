@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DataStreamSerializer implements StreamSerializer {
-
+    List<Organization.Position> positions;
     @Override
     public void doWrite(Resume r, OutputStream os) throws IOException {
         try (DataOutputStream dos = new DataOutputStream(os)) {
@@ -97,12 +97,13 @@ public class DataStreamSerializer implements StreamSerializer {
             case EXPERIENCE:
             case EDUCATION:
                 List<Organization> organizations = new ArrayList<>();
-                List<Organization.Position> positions = new ArrayList<>();
+                //List<Organization.Position> positions = new ArrayList<>();
                 int size1 = dis.readInt();
                 for (int i = 0; i < size1; i++) {
                     Link homePage = new Link(dis.readUTF(), dis.readUTF());
                     int size2 = dis.readInt();
                     for (int n = 0; n < size2; n++) {
+                        positions = new ArrayList<>();
                         positions.add(new Organization.Position(readLocalDate(dis), readLocalDate(dis),
                                 dis.readUTF(), dis.readUTF()));
                     }
