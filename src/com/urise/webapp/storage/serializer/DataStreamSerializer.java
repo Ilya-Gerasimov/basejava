@@ -85,7 +85,6 @@ public class DataStreamSerializer implements StreamSerializer {
     }
 
     private AbstractSection readSection(DataInputStream dis, SectionType sectionType) throws IOException {
-        List<Organization.Position> positions = null;
         switch (sectionType) {
             case PERSONAL:
             case OBJECTIVE:
@@ -118,7 +117,7 @@ public class DataStreamSerializer implements StreamSerializer {
 
     private void writeLocalDate(DataOutputStream dos, LocalDate ld) throws IOException {
         dos.writeInt(ld.getYear());
-        dos.writeInt(ld.getMonth().getValue());
+        dos.writeInt(ld.getMonthValue());
     }
 
     private LocalDate readLocalDate(DataInputStream dis) throws IOException {
