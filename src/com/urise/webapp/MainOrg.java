@@ -1,19 +1,13 @@
 package com.urise.webapp;
 
-import com.urise.webapp.model.Link;
 import com.urise.webapp.model.Organization;
-import com.urise.webapp.model.OrganizationSection;
-import com.urise.webapp.model.Resume;
 
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.urise.webapp.model.SectionType.EDUCATION;
-
 public class MainOrg {
     public static void main(String[] args) {
-        final Resume RESUME = new Resume("uuid", "Name1");
 
         List<Organization.Position> positions = new ArrayList<>();
         positions.add( new Organization.Position(1993, Month.SEPTEMBER, 1996, Month.JULY,
@@ -23,23 +17,28 @@ public class MainOrg {
         positions.add( new Organization.Position(1984, Month.SEPTEMBER, 1987, Month.JUNE,
                 "Выпускник школы", ""));
 
-        List<Organization> Education = new ArrayList<>();
-        Education.add(new Organization(new Link("Санкт-Петербургский национальный исследовательский университет",
-                "https://itmo.ru/ru/"), positions));
-        RESUME.addSection(EDUCATION, new OrganizationSection(Education));
-
-        System.out.println("RESUME 1\n" + RESUME.toString() + "\n");
-
+        System.out.println(positions.toString());
         positions.add( new Organization.Position(1984, Month.SEPTEMBER, 1987, Month.JUNE,
-                "Выпускник школы 2", ""));
+                "Выпускник школы2", ""));
+        System.out.println(positions.toString());
+        positions.clear();
+        System.out.println(positions.toString());
 
-        Education.add(new Organization(new Link("Санкт-Петербургский национальный исследовательский университет",
-                "https://itmo.ru/ru/"), positions));
-        RESUME.addSection(EDUCATION, new OrganizationSection(Education));
+        List<Integer> ints = new ArrayList<>();
+        ints.add(1);
+        methodA(ints);
+        System.out.println(ints.size()); //*что тут выведет в консоль?*
+        System.out.println(ints.toString());
+        methodB(ints);
+        System.out.println(ints.size()); //*что тут выведет в консоль?*
+        System.out.println(ints.toString());
 
-        System.out.println("RESUME 1\n" + RESUME.toString() + "\n");
-
-
-
+    }
+    static void methodA(List<Integer> ints) {
+        ints.add(2);
+    }
+    static void methodB(List<Integer> ints) {
+        ints = new ArrayList<>();
+        ints.add(3);
     }
 }

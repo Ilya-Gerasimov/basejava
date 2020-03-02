@@ -152,13 +152,6 @@ public abstract class AbstractStorageTest {
         assertEquals(RESUME_5, storage.get(UUID_5));
     }
 
-    @Test
-    public void readWrite() {
-        storage.clear();
-        storage.save(RESUME_1);
-        assertEquals(RESUME_1, storage.get(UUID_1));
-    }
-
     @Test(expected = ExistStorageException.class)
     public void saveExist() throws Exception {
         storage.save(RESUME_1);
