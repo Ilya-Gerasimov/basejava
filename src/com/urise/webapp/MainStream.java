@@ -22,7 +22,7 @@ public class MainStream {
         return IntStream.of(values)
                 .distinct()
                 .sorted()
-                .map(x -> (int) (x * Math.pow(10, IntStream.of(values).distinct().count() - x)))//тут для первого элемента должна быть 1, потом 2...
+                .map(x -> (int) (x * Math.pow(10, IntStream.of(values).distinct().count() - x)))//тут для первого элемента х должна быть 1, потом 2...
                 .sum();
     }
 
