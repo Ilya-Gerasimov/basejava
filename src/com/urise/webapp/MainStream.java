@@ -31,6 +31,15 @@ public class MainStream {
                 .collect(Collectors.toList());
     }
 
+    /* я бы сделал так, но в задании рекомендуют все в один стрим
+    public static List<Integer> oddOrEven(List<Integer> integers) {
+        int cont = integers.stream().mapToInt(num -> num).sum() % 2;
+        return integers.stream()
+                .filter(value -> value % 2 == cont)
+                .collect(Collectors.toList());
+    }
+     */
+
     public static void main(String[] args) {
         int[] values1 = {1, 2, 3, 3, 2, 3};
         System.out.println(minValue(values1));
