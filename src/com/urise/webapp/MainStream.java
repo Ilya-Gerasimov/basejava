@@ -19,15 +19,10 @@ import java.util.stream.IntStream;
 public class MainStream {
 
     public static int minValue(int[] values) {
-        int[] ints = IntStream.of(values)
+        return IntStream.of(values)
                 .distinct()
                 .sorted()
-                .toArray();
-        int sum = 0;
-        for (int i = 1; i <= ints.length; i++) {
-            sum += (int) (ints[i-1]  * Math.pow(10, (ints.length-i)));
-        }
-        return sum;
+                .reduce(0, (acc, x) -> acc * 10 + x);
     }
 
     public static List<Integer> oddOrEven(List<Integer> integers) {
