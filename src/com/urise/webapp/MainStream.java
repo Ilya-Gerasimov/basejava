@@ -2,6 +2,7 @@ package com.urise.webapp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -27,7 +28,7 @@ public class MainStream {
 
     public static List<Integer> oddOrEven(List<Integer> integers) {
         return integers.stream()
-                .filter(value -> value % 2 == integers.stream().mapToInt(num -> num).sum() % 2)
+                .filter(value -> value % 2 != integers.stream().mapToInt(num -> num).sum() % 2)
                 .collect(Collectors.toList());
     }
 
@@ -65,5 +66,16 @@ public class MainStream {
         integers1.add(4);
         System.out.println(oddOrEven(integers1));
 
+        AtomicInteger sum = new AtomicInteger();
+        System.out.println(integers1.stream()
+                .collect(Collectors.partitioningBy(i -> {
+                    sum.addAndGet(i);
+                    return i % 2 == 0;
+                }))
+                .get(sum.get() % 2 != 0));
+
+        System.out.println(integers.stream()
+                .collect(Collectors.partitioningBy(i -> i % 2 == 0))
+                .get(integers.stream().mapToInt(Integer::intValue).sum() % 2 != 0));
     }
 }
