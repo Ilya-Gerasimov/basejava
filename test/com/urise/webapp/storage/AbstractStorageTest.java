@@ -1,29 +1,26 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.Config;
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
-import com.urise.webapp.model.*;
+import com.urise.webapp.model.Resume;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.time.Month;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.urise.webapp.model.ContactType.*;
-import static com.urise.webapp.model.SectionType.*;
 import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractStorageTest {
-    protected static final File STORAGE_DIR = new File("./src/com/urise/webapp/file");
+    protected static final File STORAGE_DIR = Config.get().getStorageDir();
     protected Storage storage;
-    private static final String UUID_1 = "uuid1";
-    private static final String UUID_2 = "uuid2";
-    private static final String UUID_3 = "uuid3";
-    private static final String UUID_4 = "uuid4";
-    private static final String UUID_5 = "uuid5";
+    private static final String UUID_1 = "uuid1                               ";
+    private static final String UUID_2 = "uuid2                               ";
+    private static final String UUID_3 = "uuid3                               ";
+    private static final String UUID_4 = "uuid4                               ";
+    private static final String UUID_5 = "uuid5                               ";
 
     private static final Resume RESUME_1;
     private static final Resume RESUME_2;
@@ -36,8 +33,8 @@ public abstract class AbstractStorageTest {
         RESUME_2 = new Resume(UUID_2, "Name2");
         RESUME_3 = new Resume(UUID_3, "Name3");
         RESUME_4 = new Resume(UUID_4, "Name4");
-        RESUME_5 = new Resume(UUID_5, "Name4");
-        RESUME_1.addContact(PHONE, "+7(921) 855-0482");
+        RESUME_5 = new Resume(UUID_5, "Name5");
+/*        RESUME_1.addContact(PHONE, "+7(921) 855-0482");
         RESUME_1.addContact(SKYPE, "grigory.kislin");
         RESUME_1.addContact(E_MAIL, "gkislin@yandex.ru");
         RESUME_1.addSection(PERSONAL, new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность." +
@@ -75,6 +72,7 @@ public abstract class AbstractStorageTest {
                 "http://www.school.mipt.ru",
                 new Organization.Position(1984, Month.SEPTEMBER, 1987, Month.JUNE, "Выпускник школы", "")));
         RESUME_1.addSection(EDUCATION, new OrganizationSection(Education));
+ */
     }
 
     protected AbstractStorageTest(Storage storage) {
