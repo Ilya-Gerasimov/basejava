@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import static com.urise.webapp.model.ContactType.*;
 import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractStorageTest {
@@ -35,10 +36,18 @@ public abstract class AbstractStorageTest {
         RESUME_3 = new Resume(UUID_3, "Name3");
         RESUME_4 = new Resume(UUID_4, "Name4");
         RESUME_5 = new Resume(UUID_5, "Name5");
-/*        RESUME_1.addContact(PHONE, "+7(921) 855-0482");
+        RESUME_1.addContact(PHONE, "+7(921) 855-0482");
         RESUME_1.addContact(SKYPE, "grigory.kislin");
         RESUME_1.addContact(E_MAIL, "gkislin@yandex.ru");
-        RESUME_1.addSection(PERSONAL, new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность." +
+        RESUME_2.addContact(PHONE, "+7(921) 855-0482");
+        RESUME_2.addContact(E_MAIL, "dsff@yandex.ru");
+        RESUME_3.addContact(SKYPE, "grigory.kislin");
+        RESUME_4.addContact(E_MAIL, "gkislin@yandex.ru");
+        RESUME_5.addContact(PHONE, "+7(921) 855-0482");
+        RESUME_5.addContact(SKYPE, "grigory.kislin");
+        RESUME_5.addContact(E_MAIL, "gkislin@yandex.ru");
+
+/*        RESUME_1.addSection(PERSONAL, new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность." +
                 " Пурист кода и архитектуры."));
         RESUME_1.addSection(OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и " +
                 "Enterprise технологиям."));
@@ -134,7 +143,8 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void update() {
-        Resume resume = new Resume(UUID_3, "FullName_3");
+        Resume resume = new Resume(UUID_3, "New_Name3");
+        resume.addContact(SKYPE, "grigory.kislin");
         storage.update(resume);
         assertEquals(resume, storage.get(UUID_3));
     }
