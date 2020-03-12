@@ -3,16 +3,20 @@ package com.urise.webapp.storage;
 import com.urise.webapp.Config;
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
+import com.urise.webapp.model.ListSection;
 import com.urise.webapp.model.Resume;
+import com.urise.webapp.model.TextSection;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 import static com.urise.webapp.model.ContactType.*;
+import static com.urise.webapp.model.SectionType.*;
 import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractStorageTest {
@@ -39,31 +43,44 @@ public abstract class AbstractStorageTest {
         RESUME_1.addContact(PHONE, "+7(921) 855-0482");
         RESUME_1.addContact(SKYPE, "grigory.kislin");
         RESUME_1.addContact(E_MAIL, "gkislin@yandex.ru");
-        RESUME_2.addContact(PHONE, "+7(921) 855-0482");
+        RESUME_2.addContact(PHONE, "+2222222");
         RESUME_2.addContact(E_MAIL, "dsff@yandex.ru");
-        RESUME_3.addContact(SKYPE, "grigory.kislin");
-        RESUME_4.addContact(E_MAIL, "gkislin@yandex.ru");
-        RESUME_5.addContact(PHONE, "+7(921) 855-0482");
-        RESUME_5.addContact(SKYPE, "grigory.kislin");
-        RESUME_5.addContact(E_MAIL, "gkislin@yandex.ru");
+        RESUME_3.addContact(SKYPE, "333333333@33");
+        RESUME_3.addContact(E_MAIL, "3333@yandex.ru");
+        RESUME_4.addContact(E_MAIL, "4444444@yandex.ru");
+        RESUME_5.addContact(PHONE, "+555555555");
+        RESUME_5.addContact(SKYPE, "55555.555");
+        RESUME_5.addContact(E_MAIL, "55555@yandex.ru");
 
-/*        RESUME_1.addSection(PERSONAL, new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность." +
+        RESUME_1.addSection(PERSONAL, new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность." +
                 " Пурист кода и архитектуры."));
         RESUME_1.addSection(OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и " +
                 "Enterprise технологиям."));
-        List<String> Achievement = new ArrayList<>();
-        Achievement.add("С 2013 года: разработка проектов \"Разработка Web приложения\",\"Java Enterprise\", \"Многомодульный maven. " +
-                "Многопоточность. XML (JAXB/StAX). Веб сервисы (JAX-RS/SOAP). Удаленное взаимодействие (JMS/AKKA)\". " +
-                "Организация онлайн стажировок и ведение проектов. Более 1000 выпускников.");
-        Achievement.add("Реализация двухфакторной аутентификации для онлайн платформы управления проектами Wrike. Интеграция с Twilio, " +
-                "DuoSecurity, Google Authenticator, Jira, Zendesk.");
-        RESUME_1.addSection(ACHIEVEMENT, new ListSection(Achievement));
+
+        List<String> Achievement1 = new ArrayList<>();
+        Achievement1.add("С 2013 года: разработка проектов.");
+        Achievement1.add("Реализация аутентификации.");
+        RESUME_1.addSection(ACHIEVEMENT, new ListSection(Achievement1));
+
+        List<String> Achievement5 = new ArrayList<>();
+        Achievement5.add("Это 1 достижение.");
+        Achievement5.add("Это 2 достижение.");
+        RESUME_5.addSection(ACHIEVEMENT, new ListSection(Achievement5));
+
         List<String> Qualification = new ArrayList<>();
-        Qualification.add("JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2");
-        Qualification.add("Version control: Subversion, Git, Mercury, ClearCase, Perforce");
-        Qualification.add("DB: PostgreSQL(наследование, pgplsql, PL/Python), Redis (Jedis), H2, Oracle,");
+        Qualification.add("JEE AS: GlassFish (v2.1, v3)");
+        Qualification.add("Version control:");
+        Qualification.add("DB: PostgreSQL(наследование)");
         RESUME_1.addSection(QUALIFICATIONS, new ListSection(Qualification));
-        List<Organization> Experience = new ArrayList<>();
+
+        List<String> Qualification5 = new ArrayList<>();
+        Qualification5.add("Это 1 квалификация");
+        Qualification5.add("Это 2 квалификация");
+        Qualification5.add("Это 3 квалификация");
+        RESUME_5.addSection(QUALIFICATIONS, new ListSection(Qualification5));
+
+
+/*        List<Organization> Experience = new ArrayList<>();
         Experience.add(new Organization("Java Online Projects", "http://javaops.ru/",
                 new Organization.Position(2013, Month.NOVEMBER, 2020, Month.NOVEMBER,"Автор проекта.",
                         "Создание, организация и проведение Java онлайн проектов и стажировок.")));
@@ -145,6 +162,21 @@ public abstract class AbstractStorageTest {
     public void update() {
         Resume resume = new Resume(UUID_3, "New_Name3");
         resume.addContact(SKYPE, "grigory.kislin");
+        resume.addContact(PHONE, "+3333333");
+
+        resume.addSection(PERSONAL, new TextSection("Аналитический склад ума."));
+        resume.addSection(OBJECTIVE, new TextSection("Ведущий стажировок."));
+
+        List<String> Achievement = new ArrayList<>();
+        Achievement.add("Это 1 достижение.");
+        Achievement.add("Это 2 достижение.");
+        resume.addSection(ACHIEVEMENT, new ListSection(Achievement));
+
+        List<String> Qualification = new ArrayList<>();
+        Qualification.add("Это 1 квалификация");
+        Qualification.add("Это 2 квалификация");
+        Qualification.add("Это 3 квалификация");
+        resume.addSection(QUALIFICATIONS, new ListSection(Qualification));
         storage.update(resume);
         assertEquals(resume, storage.get(UUID_3));
     }
