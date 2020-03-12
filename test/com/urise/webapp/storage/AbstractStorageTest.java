@@ -57,6 +57,9 @@ public abstract class AbstractStorageTest {
         RESUME_1.addSection(OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и " +
                 "Enterprise технологиям."));
 
+        RESUME_5.addSection(PERSONAL, new TextSection("Персональная информация №5."));
+        RESUME_5.addSection(OBJECTIVE, new TextSection("Персональные достижения №5"));
+
         List<String> Achievement1 = new ArrayList<>();
         Achievement1.add("С 2013 года: разработка проектов.");
         Achievement1.add("Реализация аутентификации.");

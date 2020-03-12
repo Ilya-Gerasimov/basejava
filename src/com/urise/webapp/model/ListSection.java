@@ -30,15 +30,6 @@ public class ListSection extends AbstractSection {
     }
 
     @Override
-    public String toStringSection() {
-        StringBuilder stroka = new StringBuilder();
-        for (String str : contents) {
-            stroka.append(str).append("\n");
-        }
-        return stroka.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
