@@ -31,11 +31,11 @@ public class ListSection extends AbstractSection {
 
     @Override
     public String toStringSection() {
-        String stroka = "";
+        StringBuilder stroka = new StringBuilder();
         for (String str : contents) {
-            stroka += str + "\n";
+            stroka.append(str).append("\n");
         }
-        return stroka;
+        return stroka.toString();
     }
 
     @Override
