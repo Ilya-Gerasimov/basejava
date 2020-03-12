@@ -189,7 +189,7 @@ public class SqlStorage implements Storage {
                 switch (e.getKey()) {
                     case PERSONAL:
                     case OBJECTIVE:
-                        ps.setString(3, e.getValue().toString());
+                        ps.setString(3, ((TextSection) e.getValue()).getContent());
                         break;
                     case ACHIEVEMENT:
                     case QUALIFICATIONS:
