@@ -3,13 +3,12 @@ package com.urise.webapp.storage;
 import com.urise.webapp.Config;
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
-import com.urise.webapp.model.ListSection;
-import com.urise.webapp.model.Resume;
-import com.urise.webapp.model.TextSection;
+import com.urise.webapp.model.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -82,8 +81,7 @@ public abstract class AbstractStorageTest {
         Qualification5.add("Это 3 квалификация");
         RESUME_5.addSection(QUALIFICATIONS, new ListSection(Qualification5));
 
-
-/*        List<Organization> Experience = new ArrayList<>();
+        List<Organization> Experience = new ArrayList<>();
         Experience.add(new Organization("Java Online Projects", "http://javaops.ru/",
                 new Organization.Position(2013, Month.NOVEMBER, 2020, Month.NOVEMBER,"Автор проекта.",
                         "Создание, организация и проведение Java онлайн проектов и стажировок.")));
@@ -102,7 +100,6 @@ public abstract class AbstractStorageTest {
                 "http://www.school.mipt.ru",
                 new Organization.Position(1984, Month.SEPTEMBER, 1987, Month.JUNE, "Выпускник школы", "")));
         RESUME_1.addSection(EDUCATION, new OrganizationSection(Education));
- */
     }
 
     protected AbstractStorageTest(Storage storage) {

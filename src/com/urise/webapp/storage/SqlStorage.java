@@ -1,11 +1,18 @@
 package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.NotExistStorageException;
-import com.urise.webapp.model.*;
+import com.urise.webapp.model.AbstractSection;
+import com.urise.webapp.model.ContactType;
+import com.urise.webapp.model.Resume;
+import com.urise.webapp.model.SectionType;
 import com.urise.webapp.sql.SqlHelper;
+import com.urise.webapp.util.JsonParser;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SqlStorage implements Storage {
     public final SqlHelper sqlHelper;
@@ -148,24 +155,11 @@ public class SqlStorage implements Storage {
         }
     }
 
-    private void addSection(ResultSet rs, Resume resume) throws SQLException {
+    private void addSection(ResultSet rs, Resume r) throws SQLException {
         String content = rs.getString("content");
         if (content != null) {
             SectionType type = SectionType.valueOf(rs.getString("type"));
-            toWriteSection(resume, type, content);
-        }
-    }
-
-    private void toWriteSection(Resume resume, SectionType type, String content) {
-        switch (type) {
-            case PERSONAL:
-            case OBJECTIVE:
-                resume.addSection(type, new TextSection(content));
-                break;
-            case ACHIEVEMENT:
-            case QUALIFICATIONS:
-                resume.addSection(type, new ListSection(new ArrayList<>(Arrays.asList(content.split("\n")))));
-                break;
+            r.addSection(type, JsonParser.read(content, AbstractSection.class));
         }
     }
 
@@ -181,21 +175,13 @@ public class SqlStorage implements Storage {
         }
     }
 
-    private void insertSections(Connection conn, Resume resume) throws SQLException {
+    private void insertSections(Connection conn, Resume r) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement("INSERT INTO section (resume_uuid, type, content) VALUES (?,?,?)")) {
-            for (Map.Entry<SectionType, AbstractSection> e : resume.getSections().entrySet()) {
-                ps.setString(1, resume.getUuid());
+            for (Map.Entry<SectionType, AbstractSection> e : r.getSections().entrySet()) {
+                ps.setString(1, r.getUuid());
                 ps.setString(2, e.getKey().name());
-                switch (e.getKey()) {
-                    case PERSONAL:
-                    case OBJECTIVE:
-                        ps.setString(3, ((TextSection) e.getValue()).getContent());
-                        break;
-                    case ACHIEVEMENT:
-                    case QUALIFICATIONS:
-                        ps.setString(3, String.join("\n", ((ListSection) e.getValue()).getContents()));
-                        break;
-                }
+                AbstractSection section = e.getValue();
+                ps.setString(3, JsonParser.write(section, AbstractSection.class));
                 ps.addBatch();
             }
             ps.executeBatch();
