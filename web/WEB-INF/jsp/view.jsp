@@ -70,8 +70,7 @@
                         <c:forEach var="position" items="${org.positions}">
                             <jsp:useBean id="position" type="com.urise.webapp.model.Organization.Position"/>
                             <tr>
-                                <td width="20%"><%=DateUtil.formatDates(position)%>
-                                </td>
+                                <td width="20%"><%=DateUtil.formatDates(position)%></td>
                                 <td><b>${position.title}</b><br>${position.description}</td>
                             </tr>
                         </c:forEach>
