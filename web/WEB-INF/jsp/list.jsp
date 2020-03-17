@@ -28,7 +28,7 @@
         </c:forEach>
     </table>
     <br>
-    <a href="resume?uuid=${null}&action=new">Создать новое резюме</a>
+    <a href="resume?action=new">Создать новое резюме</a>
 </section>
 <jsp:include page="fragments/footer.jsp"/>
 </body>

@@ -56,6 +56,9 @@ public abstract class AbstractStorageTest {
         RESUME_1.addSection(OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного обучения по Java Web и " +
                 "Enterprise технологиям."));
 
+        RESUME_2.addSection(PERSONAL, new TextSection("Персональная информация №2."));
+        RESUME_2.addSection(OBJECTIVE, new TextSection("Персональные достижения №2"));
+
         RESUME_5.addSection(PERSONAL, new TextSection("Персональная информация №5."));
         RESUME_5.addSection(OBJECTIVE, new TextSection("Персональные достижения №5"));
 
@@ -63,6 +66,11 @@ public abstract class AbstractStorageTest {
         Achievement1.add("С 2013 года: разработка проектов.");
         Achievement1.add("Реализация аутентификации.");
         RESUME_1.addSection(ACHIEVEMENT, new ListSection(Achievement1));
+
+        List<String> Achievement2 = new ArrayList<>();
+        Achievement2.add("Это 1 достижение.");
+        Achievement2.add("Это 2 достижение.");
+        RESUME_2.addSection(ACHIEVEMENT, new ListSection(Achievement2));
 
         List<String> Achievement5 = new ArrayList<>();
         Achievement5.add("Это 1 достижение.");
@@ -74,6 +82,12 @@ public abstract class AbstractStorageTest {
         Qualification.add("Version control:");
         Qualification.add("DB: PostgreSQL(наследование)");
         RESUME_1.addSection(QUALIFICATIONS, new ListSection(Qualification));
+
+        List<String> Qualification2 = new ArrayList<>();
+        Qualification2.add("Это 1 квалификация");
+        Qualification2.add("Это 2 квалификация");
+        Qualification2.add("Это 3 квалификация");
+        RESUME_2.addSection(QUALIFICATIONS, new ListSection(Qualification2));
 
         List<String> Qualification5 = new ArrayList<>();
         Qualification5.add("Это 1 квалификация");
@@ -89,6 +103,7 @@ public abstract class AbstractStorageTest {
                 new Organization.Position(2014, Month.NOVEMBER, 2016, Month.JANUARY, "Старший разработчик (backend)", "Проектирование и разработка " +
                         "онлайн платформы управления проектами Wrike.")));
         RESUME_1.addSection(EXPERIENCE, new OrganizationSection(Experience));
+        RESUME_2.addSection(EXPERIENCE, new OrganizationSection(Experience));
 
         List<Organization> Education = new ArrayList<>();
         Education.add(new Organization("Санкт-Петербургский национальный исследовательский университет",
@@ -100,6 +115,7 @@ public abstract class AbstractStorageTest {
                 "http://www.school.mipt.ru",
                 new Organization.Position(1984, Month.SEPTEMBER, 1987, Month.JUNE, "Выпускник школы", "")));
         RESUME_1.addSection(EDUCATION, new OrganizationSection(Education));
+        RESUME_2.addSection(EDUCATION, new OrganizationSection(Education));
     }
 
     protected AbstractStorageTest(Storage storage) {
