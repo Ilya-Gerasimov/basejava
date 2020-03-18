@@ -37,10 +37,18 @@
                 <c:when test="${type=='PERSONAL' || type=='OBJECTIVE'}">
                     <textarea name='${type}' cols=75 rows=5><%=section%></textarea>
                 </c:when>
+
                 <c:when test="${type=='QUALIFICATIONS' || type=='ACHIEVEMENT'}">
                     <textarea name='${type}' cols=75
                               rows=5><%=String.join("\n", ((ListSection) section).getContents())%></textarea>
                 </c:when>
+
+                <%-- Если оформить как ниже, то добавляются пробелы при вызове edit         --%>
+<%--                <c:when test="${type=='QUALIFICATIONS' || type=='ACHIEVEMENT'}">--%>
+<%--                    <textarea name='${type}' cols=75 rows=5>--%>
+<%--                        <%=String.join("\n", ((ListSection) section).getContents())%></textarea>--%>
+<%--                </c:when>--%>
+
                 <c:when test="${type=='EXPERIENCE' || type=='EDUCATION'}">
                     <c:forEach var="org" items="<%=((OrganizationSection) section).getOrganizations()%>"
                                varStatus="counter">
