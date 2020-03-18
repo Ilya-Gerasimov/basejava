@@ -126,9 +126,9 @@ public class ResumeServlet extends HttpServlet {
                             break;
                         case ACHIEVEMENT:
                         case QUALIFICATIONS:
-//                            if (section == null) {
-//                                section = ListSection.EMPTY;
-//                            }
+                            if (section == null) {
+                                section = ListSection.EMPTY;
+                            }
                             break;
                         case EXPERIENCE:
                         case EDUCATION:
