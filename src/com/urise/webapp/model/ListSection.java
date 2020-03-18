@@ -8,8 +8,9 @@ public class ListSection extends AbstractSection {
     private static final long serialVersionUID = 1L;
     private List<String> contents;
 
-    public ListSection() {
-    }
+    public ListSection() {    }
+
+    public static final ListSection EMPTY = new ListSection("");
 
     public ListSection(String... contents) {
         this(Arrays.asList(contents));

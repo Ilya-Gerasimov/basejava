@@ -9,6 +9,8 @@ public class TextSection extends AbstractSection {
     public TextSection() {
     }
 
+    public static final TextSection EMPTY = new TextSection("");
+
     public TextSection(String content) {
         Objects.requireNonNull(content, "content cannot be null");
         this.content = content;

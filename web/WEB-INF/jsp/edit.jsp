@@ -51,7 +51,6 @@
                         <dl>
                             <dt>Сайт учереждения:</dt>
                             <dd><input type="text" name='${type}url' size=100 value="${org.homePage.url}"></dd>
-                            </dd>
                         </dl>
                         <br>
                         <div style="margin-left: 30px">
@@ -69,6 +68,7 @@
                                     <dd>
                                         <input type="text" name="${type}${counter.index}endDate" size=10
                                                value="<%=DateUtil.format(pos.getEndDate())%>" placeholder="MM/yyyy">
+                                    </dd>
                                 </dl>
                                 <dl>
                                     <c:if test="${type=='EXPERIENCE'}">
@@ -79,6 +79,7 @@
                                     </c:if>
                                     <dd><input type="text" name='${type}${counter.index}title' size=75
                                                value="${pos.title}">
+                                    </dd>
                                 </dl>
                                 <dl>
                                     <c:if test="${type=='EXPERIENCE'}">
@@ -88,7 +89,8 @@
                                         <dt>Навыки:</dt>
                                     </c:if>
                                     <dd><textarea name="${type}${counter.index}description" rows=5
-                                                  cols=75>${pos.description}</textarea></dd>
+                                                  cols=75>${pos.description}</textarea>
+                                    </dd>
                                 </dl>
                             </c:forEach>
                         </div>
@@ -98,7 +100,7 @@
         </c:forEach>
         <hr>
         <button type="submit">Сохранить</button>
-        <button onclick="window.history.back()">Отменить</button>
+        <button class="key" type="reset" onclick="window.history.go(-1)">Отменить</button>
     </form>
 </section>
 <jsp:include page="fragments/footer.jsp"/>
